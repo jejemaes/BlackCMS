@@ -5,7 +5,7 @@
  *
  */
 
-namespace addons\ir;
+namespace addons\ir\model;
 
 use system\core\BlackModel as BlackModel;
 
@@ -13,6 +13,8 @@ use system\core\BlackModel as BlackModel;
 class IrView extends BlackModel{
 	
 	protected static $table = 'ir_view';
+	
+	protected static $mapper = 'addons\ir\model\IrViewMapper';
 	
 	public static function fields(){
 		$fields = parent::fields();
@@ -23,15 +25,9 @@ class IrView extends BlackModel{
 				'sequence'     => ['type' => 'integer', 'default' => 5, 'required' => true],
 				'type'		   => ['type' => 'string', 'selection' => array('form' => 'Form', 'tree' => 'List', 'template' => 'Template Qweb', 'bundle' => 'Assets Bundle'), 'default' => 'template', 'required' => true],
 				'active'	   => ['type' => 'boolean', 'required' => true],
+				'inherit_id'   => ['type' => 'integer'],
 				//'date_created' => ['type' => 'datetime', 'value' => new \DateTime()]
 		));
 	}
-	
-	
-	
-	
-	public static function render($xmlid, array $values, $engine_class = 'addons\ir\IrQweb'){
-		return '';
-	}
-	
+		
 }

@@ -1297,10 +1297,9 @@ class Slim
             //Apply pretty exceptions only in debug to avoid accidental information leakage in production
             $this->add(new \Slim\Middleware\PrettyExceptions());
         }
-
         //Invoke middleware and application stack
         $this->middleware[0]->call();
-
+        
         //Fetch status, header, and body
         list($status, $headers, $body) = $this->response->finalize();
 
@@ -1343,14 +1342,20 @@ class Slim
     public function call()
     {
         try {
-            if (isset($this->environment['slim.flash'])) {
+        	if (isset($this->environment['slim.flash'])) {
                 $this->view()->setData('flash', $this->environment['slim.flash']);
             }
             $this->applyHook('slim.before');
+            
+       
+            $matchedRoutes = $this->router->getMatchedRoutes($this->request->getMethod(), $this->request->getResourceUri());
+            
             ob_start();
+            //echo "CALL";
             $this->applyHook('slim.before.router');
             $dispatched = false;
             $matchedRoutes = $this->router->getMatchedRoutes($this->request->getMethod(), $this->request->getResourceUri());
+           
             foreach ($matchedRoutes as $route) {
                 try {
                     $this->applyHook('slim.before.dispatch');
@@ -1369,7 +1374,7 @@ class Slim
             $this->applyHook('slim.after.router');
             $this->stop();
         } catch (\Slim\Exception\Stop $e) {
-            $this->response()->write(ob_get_clean());
+        	$this->response()->write(ob_get_clean());
         } catch (\Exception $e) {
             if ($this->config('debug')) {
                 throw $e;

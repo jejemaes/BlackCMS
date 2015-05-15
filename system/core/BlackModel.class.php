@@ -9,8 +9,6 @@ namespace system\core;
 
 class BlackModel extends \Spot\Entity{
 	
-	
-	
 	public static function fields(){
 		$fields = parent::fields();
 		$mandatory_fields = array(
@@ -18,8 +16,5 @@ class BlackModel extends \Spot\Entity{
 		);
 		return array_merge($fields, $mandatory_fields);
 	}
-	
-
-	
 	
 }

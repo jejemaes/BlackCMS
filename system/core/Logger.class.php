@@ -79,6 +79,6 @@ class Logger{
 	 * @param string $m : the message to log
 	 */
 	public function _print($mode, $m){
-		echo '<br>'.date('Y-m-d h:i:s').' -- [' . ucfirst($mode) . '] : ' . $m . '<br>';
+		//echo '<br>'.date('Y-m-d h:i:s').' -- [' . ucfirst($mode) . '] : ' . $m . '<br>';
 	}
 }

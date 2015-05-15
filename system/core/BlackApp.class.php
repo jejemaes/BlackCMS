@@ -11,6 +11,7 @@ namespace system\core;
 class BlackApp extends \Spot\Locator{
 	
 	private $spot;
+	public $_slim;
 	
 	function __construct($sgbd_name, $db_params, $options=array()) {
 	
@@ -24,6 +25,10 @@ class BlackApp extends \Spot\Locator{
 		]);
 		
 		parent::__construct($cfg);
+		
+		$this->_slim = new \SlimController\Slim(array(
+			'controller.method_suffix'   => '', // create a route by passing the exact name of the method
+		));
 	}
 	
 	
@@ -34,14 +39,27 @@ class BlackApp extends \Spot\Locator{
 //$app->get('/archive/:year', function ($year) {
 //     echo "You are viewing archives from $year";
 // })->conditions(array('year' => '(19|20)\d\d'));
-	public function route($path, $route, $meth = 'GET', $auth='none', $conditions=array()){
+//"className:methodName"
+	public function addRoute($path, $class_and_methode, $meth = 'GET', $auth='none', $conditions=array()){
+		// TODO : maybe remove or improve !
+		$path = str_replace(' ', '%20', __BASE_PATH_URL) . $path;
 		
+		$route = $this->_slim->addControllerRoute($path, $class_and_methode);
+		// add methods
+		if(!is_array($meth)){
+			$meth = array($meth);
+		}
+		foreach ($meth as $m){
+			$route = $route->via(strtoupper($m));
+		}
+		// add conditions
+		return $route->conditions($conditions);
 	}
 	
 	
 	
 	public function dispatch(){
-		return $this->run();
+		return $this->_slim->run();
 	}
 	
 	//###########################

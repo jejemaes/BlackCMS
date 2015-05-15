@@ -109,7 +109,6 @@ class Router
                 if (!$route->supportsHttpMethod($httpMethod) && !$route->supportsHttpMethod("ANY")) {
                     continue;
                 }
-
                 if ($route->matches($resourceUri)) {
                     $this->matchedRoutes[] = $route;
                 }

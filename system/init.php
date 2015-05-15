@@ -15,6 +15,7 @@ define('_DIR_MEDIA', __SITE_PATH . 'media/');
 
 // autoload for classes
 include _DIR_INCLUDE . 'autoload.php';
+include _DIR_INCLUDE . 'include_file.inc.php';
 
 // imports
 use system\core\BlackApp as BlackApp;
@@ -45,10 +46,21 @@ function App() {
 }
 $app = App();
 
+// include routes files
+//TODO use mapper to get installed module names
+load_route_file(array('ir'));
 
+
+$app->dispatch();
+
+/*
 $post = new \system\Post();
 
 var_dump($post::fields());
+*/
+/*
 echo '<hr>';
-var_dump($app->mapper('\system\Post'));
-echo "CACA";
+$ViewMapper = $app->mapper('addons\ir\model\IrView');
+echo $ViewMapper->render('base.test1',  array('caca' => (1 == 1), 'is_class' => FALSE, 'styles' => "bolD", "website" => "eeee"));
+echo "<hr>";
+*/
