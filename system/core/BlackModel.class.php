@@ -7,7 +7,7 @@
 
 namespace system\core;
 
-class BlackModel extends \Spot\Entity{
+class BlackModel extends \Spot\Entity implements \Spot\EntityInterface{
 	
 	public static function fields(){
 		$fields = parent::fields();

@@ -15,7 +15,7 @@ define('_DIR_MEDIA', __SITE_PATH . 'media/');
 
 // autoload for classes
 include _DIR_INCLUDE . 'autoload.php';
-include _DIR_INCLUDE . 'include_file.inc.php';
+include _DIR_INCLUDE . 'file.inc.php';
 
 // imports
 use system\core\BlackApp as BlackApp;
