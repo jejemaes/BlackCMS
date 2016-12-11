@@ -6,7 +6,7 @@
  */
 namespace system\exceptions;
 
-class ObjectNotFoundException extends Exception{
+class ObjectNotFoundException extends \Exception{
 	
 	public function __construct($model, $id, $message){
 		$this->model = $model;

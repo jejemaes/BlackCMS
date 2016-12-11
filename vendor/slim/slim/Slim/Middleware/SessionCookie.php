@@ -116,6 +116,7 @@ class SessionCookie extends \Slim\Middleware
      */
     protected function loadSession()
     {
+        var_dump("===============");
         if (session_id() === '') {
             session_start();
         }

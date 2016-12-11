@@ -6,7 +6,7 @@
  */
 namespace system\exceptions;
 
-class WrongInputException extends Exception{
+class WrongInputException extends \Exception{
 	
 	private $_received;
 	private $_shouldbe;

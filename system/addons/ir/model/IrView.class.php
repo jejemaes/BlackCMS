@@ -21,7 +21,7 @@ class IrView extends BlackModel{
 				'xml_id'       => ['type' => 'string', 'required' => true, 'index' => true],
 				'web_arch'     => ['type' => 'text', 'required' => true],
 				'sequence'     => ['type' => 'integer', 'default' => 5, 'required' => true],
-				'type'		   => ['type' => 'selection', 'selection' => array('form' => 'Form', 'tree' => 'List', 'template' => 'Template Qweb', 'bundle' => 'Assets Bundle'), 'default' => 'template', 'required' => true],
+				'type'		   => ['type' => 'string', 'selection' => array('form' => 'Form', 'tree' => 'List', 'template' => 'Template Qweb', 'bundle' => 'Assets Bundle'), 'default' => 'template', 'required' => true],
 				'active'	   => ['type' => 'boolean'],
 				'inherit_id'   => ['type' => 'integer'],
 				//'date_created' => ['type' => 'datetime', 'value' => new \DateTime()]
@@ -39,4 +39,5 @@ class IrView extends BlackModel{
 			'inherit' => $mapper->belongsTo($entity, 'addons\ir\model\IrView', 'inherit_id')
 		];
 	}
+
 }

@@ -6,6 +6,6 @@
  */
 namespace system\exceptions;
 
-class ProgrammingException extends Exception{
+class ProgrammingException extends \Exception{
 
 }

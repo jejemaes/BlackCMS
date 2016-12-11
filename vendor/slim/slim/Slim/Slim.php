@@ -1330,7 +1330,7 @@ class Slim
         }
 
         $this->applyHook('slim.after');
-
+        
         restore_error_handler();
     }
 

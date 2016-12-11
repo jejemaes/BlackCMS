@@ -20,8 +20,7 @@ class IrViewMapper extends BlackMapper{
 	 */
 	public function render($xml_id, array $values, $engine_class = 'system\lib\qweb\QwebEngine'){
 		$engine = $engine_class::getEngine();
-		echo $engine->render($xml_id, $values);
-		return '%%%%%';
+		return $engine->render($xml_id, $values);
 	}
 	
 	

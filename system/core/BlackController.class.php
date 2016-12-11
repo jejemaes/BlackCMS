@@ -11,20 +11,21 @@ class BlackController extends \SlimController\SlimController{
 	
 	public $view;
 	
-	public function __construct(){
+	public function __construct($app){
 		$this->view = App()->mapper('addons\ir\model\IrView');
+		parent::__construct($app);
 	}
 	
 	
 	 protected function render($template, $args = array(), $status=null){
 		
 		if (!is_null($status)) { // copy from parent
-			$this->response->status($status);
+			$this->app->response->status($status);
 		}
 		// TODO add a prepare value to render, to extends the values array (for website)
 		
 		// TODO check the headers, ...
-		return $this->view->render($template, $args);
+		$this->app->response->body($this->view->render($template, $args));
 	}
 	
 }
